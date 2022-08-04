@@ -43,7 +43,8 @@ defmodule Divulga.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:absinthe, "~> 1.7"}
+      {:absinthe, "~> 1.7"},
+      {:argon2_elixir, "~> 3.0"}
     ]
   end
 
