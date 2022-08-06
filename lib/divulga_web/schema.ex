@@ -1,12 +1,14 @@
 defmodule DivulgaWeb.Schema do
   use Absinthe.Schema
   alias DivulgaWeb.Resolvers
+  alias DivulgaWeb.Schema.Middleware
 
   import_types(DivulgaWeb.Schema.Types)
 
   query do
     @desc "Get a list of all users"
     field :users, list_of(:user_type) do
+      middleware(Middleware.Authorize, :any)
       resolve(&Resolvers.UserResolver.users/3)
     end
   end

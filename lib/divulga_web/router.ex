@@ -3,6 +3,7 @@ defmodule DivulgaWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug(DivulgaWeb.Plugs.Context)
   end
 
   scope "/api" do

@@ -2,9 +2,8 @@ defmodule Divulga.Guardian do
   use Guardian, otp_app: :divulga
   alias Divulga.Accounts
 
-  def subject_for_token(user, _claims) do
-    sub = to_string(user.id)
-    {:ok, sub}
+  def subject_for_token(%Accounts.User{} = user, _claims) do
+    {:ok, to_string(user.id)}
   end
 
   def subject_for_token(_, _) do
@@ -12,8 +11,10 @@ defmodule Divulga.Guardian do
   end
 
   def resource_from_claims(%{"sub" => id}) do
-    user = Accounts.get_user!(id)
-    {:ok, user}
+    case Accounts.get_user(id) do
+      nil -> {:error, :resource_not_found}
+      user -> {:ok, user}
+    end
   end
 
   def resource_from_claims(_claims) do
