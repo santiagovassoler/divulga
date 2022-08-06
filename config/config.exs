@@ -23,6 +23,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+# Guardian config details
+config :divulga, Divulga.Guardian,
+  issuer: "divulga",
+  secret_key: "Nn1zVAK667nzvlMJfDfIA+dUT3NoykHwa6YWT1LP1yYGIXISx9zLXmYrKCSUDiS0"
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
