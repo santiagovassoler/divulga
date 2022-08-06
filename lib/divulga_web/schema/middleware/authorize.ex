@@ -2,8 +2,8 @@ defmodule DivulgaWeb.Schema.Middleware.Authorize do
   @behaviour Absinthe.Middleware
 
   def call(resolution, role) do
-    with %{current_user: currenct_user} <- resolution.context,
-         true <- correnct_role?(currenct_user, role) do
+    with %{current_user: current_user} <- resolution.context,
+         true <- correct_role?(current_user, role) do
       resolution
     else
       _ ->
@@ -12,7 +12,16 @@ defmodule DivulgaWeb.Schema.Middleware.Authorize do
     end
   end
 
-  defp correnct_role?(%{}, :any), do: true
-  defp correnct_role?(%{role: role}, role), do: true
-  defp correnct_role?(_, _), do: false
+  defp correct_role?(%{}, :any), do: true
+
+  defp correct_role?(%{role: role}, given_role) do
+    role = String.to_atom(role)
+
+    case role == given_role || role == :admin do
+      true -> true
+      _ -> false
+    end
+  end
+
+  defp correct_role?(_, _), do: false
 end
