@@ -6,9 +6,42 @@ defmodule Divulga.AdvertTest do
   describe "businesses" do
     alias Divulga.Advert.Business
 
-    @valid_attrs %{city: "some city", country: "some country", county: "some county", description: "some description", email: "some email", instagram_url: "some instagram_url", logo: "some logo", phone: "some phone", title: "some title", views: 42}
-    @update_attrs %{city: "some updated city", country: "some updated country", county: "some updated county", description: "some updated description", email: "some updated email", instagram_url: "some updated instagram_url", logo: "some updated logo", phone: "some updated phone", title: "some updated title", views: 43}
-    @invalid_attrs %{city: nil, country: nil, county: nil, description: nil, email: nil, instagram_url: nil, logo: nil, phone: nil, title: nil, views: nil}
+    @valid_attrs %{
+      city: "some city",
+      country: "some country",
+      county: "some county",
+      description: "some description",
+      email: "some email",
+      instagram_url: "some instagram_url",
+      logo: "some logo",
+      phone: "some phone",
+      title: "some title",
+      views: 42
+    }
+    @update_attrs %{
+      city: "some updated city",
+      country: "some updated country",
+      county: "some updated county",
+      description: "some updated description",
+      email: "some updated email",
+      instagram_url: "some updated instagram_url",
+      logo: "some updated logo",
+      phone: "some updated phone",
+      title: "some updated title",
+      views: 43
+    }
+    @invalid_attrs %{
+      city: nil,
+      country: nil,
+      county: nil,
+      description: nil,
+      email: nil,
+      instagram_url: nil,
+      logo: nil,
+      phone: nil,
+      title: nil,
+      views: nil
+    }
 
     def business_fixture(attrs \\ %{}) do
       {:ok, business} =

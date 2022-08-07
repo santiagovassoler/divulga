@@ -14,7 +14,7 @@ defmodule Divulga.Accounts.Session do
   defp check_password(nil, _) do
     Argon2.no_user_verify()
   end
-  
+
   defp check_password(user, args) do
     Argon2.check_pass(user, args.password)
   end

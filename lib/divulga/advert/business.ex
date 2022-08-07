@@ -15,14 +15,35 @@ defmodule Divulga.Advert.Business do
     field :title, :string
     field :views, :integer
     belongs_to(:user, User)
-    
+
     timestamps()
   end
 
   @doc false
   def changeset(business, attrs) do
     business
-    |> cast(attrs, [:logo, :title, :email, :phone, :city, :county, :country, :instagram_url, :views, :description, :user_id])
-    |> validate_required([:logo, :title, :email, :phone, :city, :county, :country, :instagram_url, :views, :description, :user_id])
+    |> cast(attrs, [
+      :logo,
+      :title,
+      :email,
+      :phone,
+      :city,
+      :county,
+      :country,
+      :instagram_url,
+      :views,
+      :description,
+      :user_id
+    ])
+    |> validate_required([
+      :logo,
+      :title,
+      :phone,
+      :city,
+      :county,
+      :country,
+      :description,
+      :user_id
+    ])
   end
 end

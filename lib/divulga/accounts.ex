@@ -117,4 +117,10 @@ defmodule Divulga.Accounts do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  def data, do: Dataloader.Ecto.new(Repo, query: &query/2)
+
+  def query(queryable, _params) do
+    queryable
+  end
 end

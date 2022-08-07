@@ -1,4 +1,4 @@
-defmodule Divulga.Schema.Middleware.ChangesetErrors do
+defmodule DivulgaWeb.Schema.Middleware.ChangesetErrors do
   @behaviour Absinthe.Middleware
 
   def call(resolution, _) do
