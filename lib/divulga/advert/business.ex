@@ -10,10 +10,10 @@ defmodule Divulga.Advert.Business do
     field :description, :string
     field :email, :string
     field :instagram_url, :string
-    field :logo, :string
+    field :logo, :string, default: "default_logo.png"
     field :phone, :string
     field :title, :string
-    field :views, :integer
+    field :views, :integer, default: 0
     belongs_to(:user, User)
 
     timestamps()

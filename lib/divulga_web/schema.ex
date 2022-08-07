@@ -14,8 +14,11 @@ defmodule DivulgaWeb.Schema do
 
   def context(ctx) do
     source = Dataloader.Ecto.new(Repo)
-    loader = Dataloader.new()
-    |> Dataloader.add_source(Accounts, source)
+
+    loader =
+      Dataloader.new()
+      |> Dataloader.add_source(Accounts, source)
+
     Map.put(ctx, :loader, loader)
   end
 

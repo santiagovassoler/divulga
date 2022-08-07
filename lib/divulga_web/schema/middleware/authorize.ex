@@ -2,13 +2,13 @@ defmodule DivulgaWeb.Schema.Middleware.Authorize do
   @behaviour Absinthe.Middleware
 
   def call(resolution, role) do
-    with %{current_user: current_user} <- resolution.context,
-         true <- correct_role?(current_user, role) do
+    with %{user: user} <- resolution.context,
+         true <- correct_role?(user, role) do
       resolution
     else
       _ ->
         resolution
-        |> Absinthe.Resolution.put_result({:error, "Unauthorized"})
+        |> Absinthe.Resolution.put_result({:error, "unauthorized"})
     end
   end
 
