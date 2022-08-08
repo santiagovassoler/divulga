@@ -29,7 +29,7 @@ defmodule DivulgaWeb.Schema do
   query do
     @desc "Get a list of all users"
     field :users, list_of(:user_type) do
-      middleware(Middleware.Authorize, :any)
+      middleware(Middleware.Authorize, :admin)
       resolve(&Resolvers.UserResolver.users/3)
     end
   end
