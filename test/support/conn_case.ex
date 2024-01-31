@@ -1,4 +1,4 @@
-defmodule DivulgaWeb.ConnCase do
+defmodule DivulgaIoWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule DivulgaWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use DivulgaWeb.ConnCase, async: true`, although
+  by setting `use DivulgaIoWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -19,25 +19,20 @@ defmodule DivulgaWeb.ConnCase do
 
   using do
     quote do
+      # The default endpoint for testing
+      @endpoint DivulgaIoWeb.Endpoint
+
+      use DivulgaIoWeb, :verified_routes
+
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import DivulgaWeb.ConnCase
-
-      alias DivulgaWeb.Router.Helpers, as: Routes
-
-      # The default endpoint for testing
-      @endpoint DivulgaWeb.Endpoint
+      import DivulgaIoWeb.ConnCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Divulga.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Divulga.Repo, {:shared, self()})
-    end
-
+    DivulgaIoWeb.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end
