@@ -3,7 +3,7 @@ on: [push, pull_request]
 jobs:
   credo:
     name: runner / credo
-    runs-on: ubuntu-latest
+    runs-on: debian-latest
     container:
       image: elixir:1.14-slim
     steps:
