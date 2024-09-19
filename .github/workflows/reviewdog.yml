@@ -3,11 +3,11 @@ on: [push, pull_request]
 jobs:
   credo:
     name: runner / credo
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     container:
       image: elixir:1.14-slim
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - name: Install Dependencies
         run: |
           mix local.rebar --force
