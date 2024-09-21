@@ -3,7 +3,7 @@ on: [push, pull_request]
 jobs:
   credo:
     runs-on: ubuntu-latest
-    name: Credo
+    name: Run Credo
     steps:
       - uses: actions/checkout@v2
         with:
