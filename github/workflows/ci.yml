@@ -1,15 +1,16 @@
+name: CI
 on: [push]
 jobs:
-    credo:
-        runs-on: ubuntu-latest
-        name: Credo
-        steps:
-          - uses: actions/checkout@v2
-            with:
-              fetch-depth: 0
-          - uses: erlef/setup-beam@v1
-            with:
-              otp-version: 23.3.4.4
-              elixir-version: 1.12.1
-          - run: mix deps.get
-          - run: mix credo diff --from-git-merge-base origin/master
+  credo:
+    runs-on: ubuntu-latest
+    name: Credo
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: 23.3.4.4
+          elixir-version: 1.12.1
+      - run: mix deps.get
+      - run: mix credo diff --from-git-merge-base origin/master
